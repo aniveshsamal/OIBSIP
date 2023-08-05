@@ -1,0 +1,79 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            align-content: end;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input,
+        select,
+        button {
+            margin: 10px;
+        }
+
+        #output {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Temperature Converter</h1>
+    <p>Enter your temperature and select your unit:</p>
+    <input type="number" id="input" placeholder="Enter temperature">
+    <select id="unit">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+        <option value="K">Kelvin</option>
+    </select>
+    <button onclick="convertTemp()">Convert</button>
+    <p>The converted temperature is:</p>
+    <div id="output"></div>
+    <script>
+        // Function to convert temperature
+        function convertTemp() {
+            // Get the input value and unit
+            var input = document.getElementById("input").value;
+            var unit = document.getElementById("unit").value;
+            // Declare variables for the output value and unit
+            var output, outputUnit;
+            // Switch case for different conversion scenarios
+            switch (unit) {
+                case "C":
+                    // Convert from Celsius to Fahrenheit
+                    output = input * 1.8 + 32;
+                    outputUnit = "F";
+                    break;
+                case "F":
+                    // Convert from Fahrenheit to Celsius
+                    output = (input - 32) / 1.8;
+                    outputUnit = "C";
+                    break;
+                case "K":
+                    // Convert from Kelvin to Celsius
+                    output = input - 273.15;
+                    outputUnit = "C";
+                    break;
+                default:
+                    // Invalid unit
+                    alert("Please select a valid unit");
+                    return;
+            }
+            // Round the output to two decimal places
+            output = output.toFixed(2);
+            // Display the output in the display area
+            document.getElementById("output").innerHTML = output + " " + outputUnit;
+        }
+    </script>
+</body>
+
+</html>
